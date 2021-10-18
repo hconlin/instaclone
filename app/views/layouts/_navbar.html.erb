@@ -7,7 +7,10 @@
   <% if user_signed_in? %>
     <%= link_to current_user.username, profile_path(current_user.username) %>
     <span> | </span>
+    <%= link_to('Friend Requests', friend_requests_path) %>
+    <span> | </span>
     <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+
   <% else %>
     <%= link_to('Login', new_user_session_path) %>
   <% end %>

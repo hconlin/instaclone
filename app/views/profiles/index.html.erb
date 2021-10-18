@@ -8,7 +8,10 @@
 
   <% @users.each do |user| %>
     <p>
-      <%= link_to user.username, profile_path(user.username) %>
+      <%= link_to user.username, profile_path(user.username) %> 
+      <% if !user.exists_or_is_self?(current_user.id, user.id) %>
+        | <%= link_to('Send Friend Request', create_friend_request_path(request: {sent_from: current_user, sent_to: user, status: 'requested'}), method: :post) %>
+      <% end %>
     </p>
   <% end %>
 </div>

@@ -1,0 +1,9 @@
+<% if @requests.empty? %>
+    <p>You have no pending friend requests.</p>
+<% else %>
+    <% @requests.each do |request| %>
+        <span><%= link_to request.find_user(request.sent_from), profile_path(request.find_user(request.sent_from)) %> | 
+        <%= link_to 'Accept', accept_request_path(sent_from: request.sent_from, sent_to: request.sent_to), method: :post %> | 
+        <%= link_to 'Decline', decline_request_path(sent_from: request.sent_from, sent_to: request.sent_to), method: :post %>
+    <% end %>
+<% end %>

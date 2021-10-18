@@ -16,4 +16,14 @@
       <% end %>
     <% end %>
   <% end %>
+
+
+  <h3> Friends </h3>
+  <% if @friends.empty? %>
+    <p> <%= @user.username %> has no friends.</p>
+  <% else %>
+    <% @friends.each do |friend| %>
+      <div><%= friend.find_user(friend.sent_from) %></div>
+    <% end %>
+  <% end %>
 </div>

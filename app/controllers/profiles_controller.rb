@@ -13,5 +13,6 @@ class ProfilesController < ApplicationController
 
   def show
     @user = User.find_by! username: params[:username]
+    @friends = FriendRequest.where('status=? AND (sent_to=? OR sent_from=?)', 'accepted', @user.id, @user.id)
   end
 end
